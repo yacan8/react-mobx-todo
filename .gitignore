@@ -1,0 +1,14 @@
+
+# Dependency directories
+node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
+
+# gitbook
+_book
+*.mov
+dist
+.idea
+.DS_Store
