@@ -4,7 +4,6 @@ import { inject, observer } from 'mobx-react';
 @inject('appStore')
 @observer
 export default class List extends React.Component {
-
   toggleState = i => {
     return e => {
       const { appStore } = this.props;

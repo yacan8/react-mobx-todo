@@ -5,7 +5,6 @@ import { inject, observer } from 'mobx-react';
 @inject('appStore')
 @observer
 export default class Input extends React.Component {
-
   addTodo = e => {
     const inputDom = findDOMNode(this.refs.input);
     const value = inputDom.value;
@@ -14,7 +13,7 @@ export default class Input extends React.Component {
       const todoList = appStore.todoList.toJS();
       todoList.push({
         name: value,
-        state: 'wait',
+        state: 'wait'
       })
       appStore.setTodoList(todoList);
       inputDom.value = '';

@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const __DEV__ = process.env.NODE_ENV !== 'production';
+// const __DEV__ = process.env.NODE_ENV !== 'production';
 const port = process.env.port;
 const host = process.env.host;
 module.exports = {
@@ -10,7 +10,13 @@ module.exports = {
     path: '/',
     filename: 'bundle.js'
   },
-  devtool : 'source-map',
+  devtool: 'source-map',
+  devServer: {
+    historyApiFallback: true,
+    host: '0.0.0.0',
+    disableHostCheck: true,
+    noInfo: true
+  },
   module: {
     rules: [
       {
@@ -22,31 +28,31 @@ module.exports = {
           presets: [
             'es2015-ie',
             'react',
-            'stage-2',
+            'stage-2'
           ],
           plugins: [
             'transform-decorators-legacy',
             'transform-class-properties',
             'transform-runtime'
-          ],
+          ]
         },
         include: path.join(__dirname, '..', 'src')
       },
-      { test: /\.css$/, loaders: ['style-loader', 'css-loader']},
-      { test: /\.less/, loaders: ['style-loader', 'css-loader', 'less-loader']}
+      {test: /\.css$/, loaders: ['style-loader', 'css-loader']},
+      {test: /\.less/, loaders: ['style-loader', 'css-loader', 'less-loader']}
     ]
   },
   resolve: {
     extensions: ['.js']
   },
-  plugins:[
+  plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template : './index.html',
-      hash     : false,
-      title    : 'react-mobx-todo',
-      filename : 'index.html',
-      inject   : 'body'
+      template: './index.html',
+      hash: false,
+      title: 'react-mobx-todo',
+      filename: 'index.html',
+      inject: 'body'
     }),
     new webpack.DllReferencePlugin({
       manifest: require('../vendor/vendor.js.json'),

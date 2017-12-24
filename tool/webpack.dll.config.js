@@ -24,7 +24,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': __DEV__ ? '"development"' : '"production"',
       'process.env.BROWSER': true,
-      __DEV__: __DEV__,
+      __DEV__: __DEV__
     }),
     ...__DEV__ ? [] : [new webpack.optimize.UglifyJsPlugin({
       compress: {

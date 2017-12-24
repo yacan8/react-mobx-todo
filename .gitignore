@@ -12,3 +12,5 @@ _book
 dist
 .idea
 .DS_Store
+
+vendor

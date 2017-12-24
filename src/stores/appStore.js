@@ -1,7 +1,5 @@
 import { observable, action, computed } from 'mobx';
 
-const domain = window.domain || '';
-
 class AppStore {
   @observable loading = false;
   @observable todoList = [];
@@ -16,10 +14,10 @@ class AppStore {
 
   @action getTodolist() {
     this.setLoading(true);
-    return fetch(`${domain}/getTodolist`).then(res => res.json()).then(res => {
+    return fetch(`http://${window.host || '127.0.0.1'}:${window.port || '8080'}/getTodolist`).then(res => res.json()).then(res => {
       this.setLoading(false);
       if (res.success) {
-        this.setTodoList(res.data.todoList);
+        this.setTodoList(res.data);
       }
       return res.data.todoList;
     }).catch(e => {
@@ -44,7 +42,5 @@ class AppStore {
     const { showState, todoList } = this;
     return showState === 'all' ? todoList.toJS() : todoList.toJS().filter(v => v.state === showState);
   }
-
 }
-
 export default AppStore;
